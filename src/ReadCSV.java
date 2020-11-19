@@ -18,6 +18,7 @@ public class ReadCSV {
 
         HashMap <String, Integer> publishers = new HashMap<String, Integer> ();
 
+        //find unique publishers within the first 500 records
         try {
             reader = new CSVReader(new FileReader("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/book_metadata.csv"));
 
@@ -40,6 +41,7 @@ public class ReadCSV {
             e.getMessage();
         }
 
+        //create new txt file to save publisher names
         try {
             File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
             if (myObj.createNewFile()) {
@@ -53,6 +55,7 @@ public class ReadCSV {
             e.printStackTrace();
         }
 
+        //save unique publishers in txt file
         try {
             FileWriter myWriter = new FileWriter("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
             for (String i : publishers.keySet()) {
