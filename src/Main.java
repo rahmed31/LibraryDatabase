@@ -2,7 +2,7 @@ import java.sql.*;
 public class Main {
     public static void main(String[] args) {
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MyCompany?serverTimezone=UTC", "raihanahmed","password");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MyCompany?serverTimezone=UTC", "user","password");
             System.out.println("Connection successful!");
 
             Statement stmt = con.createStatement();
