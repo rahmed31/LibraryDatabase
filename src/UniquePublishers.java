@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /*
-Class for reading books_with_blurbs.csv containing sample book metadata.
+Class for reading books_metadata.csv containing sample book metadata.
 Unique publishers for a limit of 500 entries are saved into publishers.txt
  */
 
