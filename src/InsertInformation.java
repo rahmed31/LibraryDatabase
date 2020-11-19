@@ -200,6 +200,53 @@ public class InsertInformation {
             if (con.isClosed()) {
                 System.out.println("Connection is closed!");
             }
+
+            //Insert Employee data
+
+            String[] firstEmployee = new String[30];
+            String[] lastEmployee = new String[30];
+
+            ArrayList<String> firstE = new ArrayList<String>();
+            ArrayList<String> lastE = new ArrayList<String>();
+
+            try {
+                File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/first-names.txt");
+                File myObj2 = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/last-names.txt");
+
+                Scanner reader = new Scanner(myObj);
+                Scanner reader2 = new Scanner(myObj2);
+
+                while (reader.hasNextLine()) {
+                    String data = reader.nextLine();
+                    first.add(data);
+                }
+                reader.close();
+
+                while (reader2.hasNextLine()) {
+                    String data = reader2.nextLine();
+                    String output = data.substring(0, 1) + data.substring(1).toLowerCase();
+                    last.add(output);
+                }
+                reader2.close();
+            }
+            catch (Exception e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+            int maxEsize = firstE.size();
+            int maxEsize2 = lastE.size();
+
+            for (int i = 0; i < 50; i++) {
+                int random = rnd.nextInt(maxEsize - 1 - 1 + 1);
+                int random2 = rnd.nextInt(maxEsize2 - 1 - 1 + 1);
+                String firstName = first.get(random);
+                String lastName = last.get(random2);
+
+                firstEmployee[i] = firstName;
+                lastEmployee[i] = lastName;
+            }
+
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

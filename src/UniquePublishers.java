@@ -12,7 +12,7 @@ Class for reading books_with_blurbs.csv containing sample book metadata.
 Unique publishers for a limit of 500 entries are saved into publishers.txt
  */
 
-public class ReadCSV {
+public class UniquePublishers {
     public static void main(String[] args) throws Exception, IOException {
         CSVReader reader = null;
 
