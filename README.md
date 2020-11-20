@@ -16,7 +16,7 @@ The following relational model is a product of the ER diagram shown above. A rel
 
 ![Relational Schema](lib/Relational-Schema.png?raw=true "Relational Schema")
 
-Using this relational schema, we can now build the actual library database using MySQL. The script to accomplish this is included in the repository under lib > DBProjectScript.sql
+Using this relational schema, we can now build the actual library database using MySQL. The script to accomplish this is included in the repository under queries > DBProjectScript.sql
 
 # Getting Started
 
