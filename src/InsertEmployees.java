@@ -12,6 +12,7 @@ Class for inserting random information for a limit of 30 employees into the Empl
 public class InsertEmployees {
     static Connection con = null;
     static Random rnd = new Random();
+    static Scanner reader = null;
 
     static {
         try {
@@ -29,8 +30,9 @@ public class InsertEmployees {
         ArrayList<String> firstE = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/first-names.txt");
         ArrayList<String> lastE = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/last-names.txt");
 
+        String query = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?)";
+
         try {
-            String query = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStmt = con.prepareStatement(query);
 
             int count = 0;
@@ -50,18 +52,17 @@ public class InsertEmployees {
 
                 count++;
             }
-
-            con.close();
-
-            if (con.isClosed()) {
-                System.out.println("Connection is closed!");
-            }
         }
         catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
         finally {
+            con.close();
+
+            if (con.isClosed()) {
+                System.out.println("Connection is closed!");
+            }
             System.out.println("--------------Insertions complete--------------");
         }
     }
@@ -69,7 +70,6 @@ public class InsertEmployees {
         ArrayList<String> names = new ArrayList<String>();
 
         File myObj = new File(path);
-        Scanner reader = null;
 
         try {
             reader = new Scanner(myObj);
