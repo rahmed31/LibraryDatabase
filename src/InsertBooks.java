@@ -1,5 +1,4 @@
 import com.opencsv.CSVReader;
-
 import java.io.File;
 import java.io.FileReader;
 import java.sql.Connection;
@@ -8,6 +7,10 @@ import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
+
+/*
+Class for inserting book metadata for first 500 entries in book_metadata.csv into the database.
+ */
 
 public class InsertBooks {
     public static void main(String[] args) {
@@ -81,7 +84,7 @@ public class InsertBooks {
             e.printStackTrace();
         }
         finally {
-            System.out.println("--------------Insertions finished--------------");
+            System.out.println("--------------Insertions complete--------------");
         }
     }
 }

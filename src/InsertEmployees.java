@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
+/*
+Class for inserting random Employee information for up to 30 employees into the database.
+ */
+
 public class InsertEmployees {
     public static void main(String[] args) throws Exception {
         Connection con = null;
@@ -51,19 +55,6 @@ public class InsertEmployees {
             e.printStackTrace();
         }
 
-        int maxEsize = firstE.size();
-        int maxEsize2 = lastE.size();
-
-        for (int i = 0; i < 30; i++) {
-            int random = rnd.nextInt(maxEsize - 1 - 0 + 1);
-            int random2 = rnd.nextInt(maxEsize2 - 1 - 0 + 1);
-            String firstName = firstE.get(random);
-            String lastName = lastE.get(random2);
-
-            firstEmployee[i] = firstName;
-            lastEmployee[i] = lastName;
-        }
-
         try {
             String query = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -72,8 +63,8 @@ public class InsertEmployees {
 
             while(count < 30) {
                 int employeeID = rnd.nextInt( 60000 - 10000 + 1) + 10000;
-                String lastName = lastEmployee[count];
-                String firstName = firstEmployee[count];
+                String lastName = lastE.get(lastE.size() - 1 - 0 + 1);
+                String firstName = firstE.get(firstE.size() - 1 - 0 + 1);
                 int salary = rnd.nextInt(90000 - 50000 + 1) + 50000;
 
                 preparedStmt.setInt(1, employeeID);
@@ -82,6 +73,7 @@ public class InsertEmployees {
                 preparedStmt.setString(4, "hello");
                 preparedStmt.setInt(5, salary);
                 preparedStmt.execute();
+
                 count++;
             }
 
@@ -96,7 +88,7 @@ public class InsertEmployees {
             e.printStackTrace();
         }
         finally {
-            System.out.println("--------------Insertions finished--------------");
+            System.out.println("--------------Insertions complete--------------");
         }
     }
 }

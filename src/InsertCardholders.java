@@ -6,10 +6,15 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+/*
+Class for inserting cardholder information for up to 50 library members.
+ */
+
 public class InsertCardholders {
     public static void main(String[] args) {
         Connection con = null;
         Random rnd = new Random();
+        final int CAP = 50;
 
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDatabase?serverTimezone=UTC", dbInfo.getUsername(), dbInfo.getPassword());
@@ -19,10 +24,8 @@ public class InsertCardholders {
             System.out.println(e.getMessage());
         }
 
-        String[] firstNames = new String[50];
-        String[] lastNames = new String[50];
-        String[] addresses = new String[50];
-        double[] phoneNumbers = new double[50];
+        String[] addresses = new String[CAP];
+        double[] phoneNumbers = new double[CAP];
 
         ArrayList<String> first = new ArrayList<String>();
         ArrayList<String> last = new ArrayList<String>();
@@ -72,31 +75,16 @@ public class InsertCardholders {
             e.printStackTrace();
         }
 
-        int max1 = first.size();
-        int max2 = last.size();
-
-        for (int i = 0; i < 50; i++) {
-            int random = rnd.nextInt(max1 - 1 - 1 + 1);
-            int random2 = rnd.nextInt(max2 - 1 - 1 + 1);
-            String firstName = first.get(random);
-            String lastName = last.get(random2);
-
-            firstNames[i] = firstName;
-            lastNames[i] = lastName;
-        }
-
         try {
             String query = "INSERT INTO Cardholder VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStmt = con.prepareStatement(query);
 
             int count = 0;
-            Random rnd2 = new Random();
 
             while(count < 50) {
-                int random = rnd.nextInt(49 - 0 + 1);
                 int cardNumber = rnd.nextInt( 50000 - 10000 + 1) + 10000;
-                String lastName = lastNames[random];
-                String firstName = firstNames[random];
+                String lastName = last.get(rnd.nextInt(last.size() - 1 - 0 + 1));
+                String firstName = first.get(rnd.nextInt(first.size() - 1 - 0 + 1));
                 String address = addresses[count];
                 double phoneNumber = phoneNumbers[count];
                 int type = rnd.nextInt(3 - 1 + 1) + 1;
@@ -109,6 +97,7 @@ public class InsertCardholders {
                 preparedStmt.setDouble(5, phoneNumber);
                 preparedStmt.setString(6, email);
                 preparedStmt.execute();
+
                 count++;
             }
 
@@ -123,7 +112,7 @@ public class InsertCardholders {
             e.printStackTrace();
         }
         finally {
-            System.out.println("--------------Insertions finished--------------");
+            System.out.println("--------------Insertions complete--------------");
         }
     }
 

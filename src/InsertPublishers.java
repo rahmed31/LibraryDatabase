@@ -4,6 +4,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
+/*
+Class for inserting unique publisher information for the first 500 entries in book_metadata.csv into the database.
+ */
+
 public class InsertPublishers {
     public static void main(String[] args) {
 
@@ -44,7 +48,7 @@ public class InsertPublishers {
             e.printStackTrace();
         }
         finally {
-            System.out.println("--------------Insertions completed--------------");
+            System.out.println("--------------Insertions complete--------------");
         }
     }
 }
