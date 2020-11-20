@@ -33,7 +33,7 @@ After building the database, create a file called dbInfo.java to store your data
 
 # Adding Random, but Meaningful, Data
 
-Random, yet meaningful, data can be added to the database using the following files:
+Random, yet meaningful, data can be added to the database (after connecting to it via MySQL Connector 8.0.22) using the following files:
 
 1. UniquePublishers.java: This file uses a hashmap to find unique publishers present in the first 500 entries of the "book_metadata.csv" file.
 2. InsertPublishers.java: This file inserts the unique publishers found in UniquePublishers.java into the database with their ID number. 
