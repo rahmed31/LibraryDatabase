@@ -16,6 +16,7 @@ Class for inserting book metadata for first 500 entries in book_metadata.csv int
 public class InsertBooks {
     static Connection con = null;
     static Random rnd = new Random();
+    static Scanner reader = null;
 
     static {
         try {
@@ -27,15 +28,15 @@ public class InsertBooks {
         }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        //Insert book metadata
-
+    public static void main(String[] args) throws Exception {
         //Create map of publisher and publisherID
         HashMap<String, Integer> myMap = getPublisherMap("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
 
+        //Insert book metadata
+        CSVReader reader = new CSVReader(new FileReader("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/book_metadata.csv"));
+        String query = "INSERT INTO Book VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         try {
-            CSVReader reader = new CSVReader(new FileReader("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/book_metadata.csv"));
-            String query = "INSERT INTO Book VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStmt = con.prepareStatement(query);
 
             //remove column names
@@ -59,25 +60,23 @@ public class InsertBooks {
                 count++;
             }
             reader.close();
-
-            con.close();
-
-            if (con.isClosed()) {
-                System.out.println("Connection is closed!");
-            }
         }
         catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
         finally {
+            con.close();
+
+            if (con.isClosed()) {
+                System.out.println("Connection is closed!");
+            }
             System.out.println("--------------Insertions complete--------------");
         }
     }
     public static HashMap<String, Integer> getPublisherMap(String path) {
         HashMap<String, Integer> myMap = new HashMap<String, Integer>();
         File myObj = new File(path);
-        Scanner reader = null;
 
         try {
             reader = new Scanner(myObj);
