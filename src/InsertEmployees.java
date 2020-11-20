@@ -12,6 +12,7 @@ public class InsertEmployees {
     public static void main(String[] args) throws Exception {
         Connection con = null;
         Random rnd = new Random();
+        final int CAP = 30;
 
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDatabase?serverTimezone=UTC", dbInfo.getUsername(), dbInfo.getPassword());
@@ -24,8 +25,8 @@ public class InsertEmployees {
 
         //Insert Employee data
 
-        String[] firstEmployee = new String[30];
-        String[] lastEmployee = new String[30];
+        String[] firstEmployee = new String[CAP];
+        String[] lastEmployee = new String[CAP];
 
         ArrayList<String> firstE = new ArrayList<String>();
         ArrayList<String> lastE = new ArrayList<String>();
