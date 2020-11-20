@@ -16,9 +16,9 @@ The following relational model is a product of the ER diagram shown above. A rel
 
 ![Relational Schema](lib/Relational-Schema.png?raw=true "Relational Schema")
 
-Using this relational schema, we can now build the actual library database using MySQL. The script to accomplish this is included in the repository under queries > DBProjectScript.sql
-
 # Getting Started
+
+Using the relational schema above, we can now build the actual library database using MySQL Workbench. The script to accomplish this is included in the respository under queries > DBProjectScript.sql. Refer to [MySQL documentation](https://dev.mysql.com/doc/) to get started with downloading and configuring MySQL Workbench if necessary.
 
 After building the database, create a file called dbInfo.java to store your database credentials. This will be included in the .gitignore file and will not be commited. Within the file, put the following information (replacing where necessary): 
 
