@@ -18,6 +18,20 @@ The following relational model is a product of the ER diagram shown above. A rel
 
 Using this relational schema, we can now build the actual library database using MySQL. The script to do this in included in the repository under lib > DBProjectScript.sql
 
+# Getting Started
 
+After creating the database, create a file called dbInfo.java to store your database credentials. This will be included in the .gitignore file and will not be commited. Within the file, put the following information (replacing where necessary): 
+
+    public class dbInfo {
+        private static String username = "username";
+        private static String password = "password";
+
+        public static String getUsername() {
+            return username;
+        }
+        public static String getPassword() {
+            return password;
+        }
+    }
 
 
