@@ -1,5 +1,6 @@
 import com.opencsv.CSVReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,10 +14,10 @@ Class for inserting book metadata for first 500 entries in book_metadata.csv int
  */
 
 public class InsertBooks {
-    public static void main(String[] args) {
-        Connection con = null;
-        Random rnd = new Random();
+    static Connection con = null;
+    static Random rnd = new Random();
 
+    static {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDatabase?serverTimezone=UTC", dbInfo.getUsername(), dbInfo.getPassword());
             System.out.println("Connection successful!");
@@ -24,27 +25,13 @@ public class InsertBooks {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
 
+    public static void main(String[] args) throws FileNotFoundException {
         //Insert book metadata
 
         //Create map of publisher and publisherID
-        HashMap<String, Integer> myMap = new HashMap<String, Integer> ();
-
-        try {
-            File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
-            Scanner reader = new Scanner(myObj);
-            int i = 1;
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                myMap.put(data, i);
-                i++;
-            }
-            reader.close();
-        }
-        catch (Exception e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+        HashMap<String, Integer> myMap = getPublisherMap("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
 
         try {
             CSVReader reader = new CSVReader(new FileReader("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/book_metadata.csv"));
@@ -86,5 +73,29 @@ public class InsertBooks {
         finally {
             System.out.println("--------------Insertions complete--------------");
         }
+    }
+    public static HashMap<String, Integer> getPublisherMap(String path) {
+        HashMap<String, Integer> myMap = new HashMap<String, Integer>();
+        File myObj = new File(path);
+        Scanner reader = null;
+
+        try {
+            reader = new Scanner(myObj);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("An error occurred when trying to read the file");
+            System.out.println(e.getMessage());
+        }
+
+        int i = 1;
+        while (reader.hasNextLine()) {
+            String data = reader.nextLine();
+            myMap.put(data, i);
+            i++;
+        }
+
+        reader.close();
+
+        return myMap;
     }
 }

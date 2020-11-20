@@ -5,14 +5,13 @@ import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 /*
-Class for inserting unique publisher information for the first 500 entries in book_metadata.csv into the database.
+Class for inserting unique publisher information for the first 500 entries in book_metadata.csv into the Publisher table.
  */
 
 public class InsertPublishers {
-    public static void main(String[] args) {
+    static Connection con = null;
 
-        Connection con = null;
-
+    static {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDatabase?serverTimezone=UTC", dbInfo.getUsername(), dbInfo.getPassword());
             System.out.println("Connection successful!");
@@ -20,7 +19,9 @@ public class InsertPublishers {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
 
+    public static void main(String[] args) {
         /* Record creation*/
         //Insert publishing house and id
 

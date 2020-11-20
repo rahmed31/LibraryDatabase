@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,15 +8,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 /*
-Class for inserting cardholder information for up to 50 library members.
+Class for inserting cardholder information for up to 50 library members into the Member table.
  */
 
 public class InsertCardholders {
-    public static void main(String[] args) {
-        Connection con = null;
-        Random rnd = new Random();
-        final int CAP = 50;
+    static Connection con = null;
+    static Random rnd = new Random();
+    static final int CAP = 50;
 
+    static {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDatabase?serverTimezone=UTC", dbInfo.getUsername(), dbInfo.getPassword());
             System.out.println("Connection successful!");
@@ -23,51 +24,38 @@ public class InsertCardholders {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
 
+    public static void main(String[] args) throws Exception {
         String[] addresses = new String[CAP];
         double[] phoneNumbers = new double[CAP];
 
-        ArrayList<String> first = new ArrayList<String>();
-        ArrayList<String> last = new ArrayList<String>();
+        ArrayList<String> first = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/first-names.txt");
+        ArrayList<String> last = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/last-names.txt");
 
         try {
-            File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/first-names.txt");
-            File myObj2 = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/last-names.txt");
-            File myObj3 = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-addresses.txt");
-            File myObj4 = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-phonenumbers.txt");
+            File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-addresses.txt");
+            File myObj2 = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-phonenumbers.txt");
+
             Scanner reader = new Scanner(myObj);
-            Scanner reader2 = new Scanner(myObj2);
-            Scanner reader3 = new Scanner(myObj3);
-            Scanner reader4 = new Scanner(myObj4);
-
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                first.add(data);
-            }
-            reader.close();
-
-            while (reader2.hasNextLine()) {
-                String data = reader2.nextLine();
-                String output = data.substring(0, 1) + data.substring(1).toLowerCase();
-                last.add(output);
-            }
-            reader2.close();
 
             int i = 0;
-            while (reader3.hasNextLine()) {
-                String data = reader3.nextLine();
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
                 addresses[i] = data;
                 i++;
             }
-            reader3.close();
+            reader.close();
+
+            reader = new Scanner(myObj2);
 
             int j = 0;
-            while (reader4.hasNext()) {
-                double data = reader4.nextDouble();
+            while (reader.hasNext()) {
+                double data = reader.nextDouble();
                 phoneNumbers[j] = data;
                 j++;
             }
-            reader3.close();
+            reader.close();
 
         }
         catch (Exception e) {
@@ -133,4 +121,30 @@ public class InsertCardholders {
 
         return email;
     }
+
+    public static ArrayList<String> extractNames(String path) {
+        ArrayList<String> names = new ArrayList<String>();
+
+        File myObj = new File(path);
+        Scanner reader = null;
+
+        try {
+            reader = new Scanner(myObj);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("An error occurred when reading the file");
+            System.out.println(e.getMessage());
+        }
+
+        while (reader.hasNextLine()) {
+            String data = reader.nextLine();
+            String output = data.substring(0, 1) + data.substring(1).toLowerCase();
+            names.add(output);
+        }
+
+        reader.close();
+
+        return names;
+    }
+
 }
