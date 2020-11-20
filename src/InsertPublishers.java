@@ -10,6 +10,7 @@ Class for inserting unique publisher information for the first 500 entries in bo
 
 public class InsertPublishers {
     static Connection con = null;
+    static Scanner reader = null;
 
     static {
         try {
@@ -21,34 +22,34 @@ public class InsertPublishers {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         /* Record creation*/
         //Insert publishing house and id
+        File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
+        String query = "INSERT INTO Publisher VALUES (?, ?)";
 
         try {
-            File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
-            Scanner myReader = new Scanner(myObj);
-            String query = "INSERT INTO Publisher VALUES (?, ?)";
+            reader = new Scanner(myObj);
+
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
                 preparedStmt.setInt(1, 0);
                 preparedStmt.setString(2, data);
                 preparedStmt.execute();
             }
-            myReader.close();
-
-            con.close();
-
-            if (con.isClosed()) {
-                System.out.println("Connection is closed!");
-            }
+            reader.close();
         }
         catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
         finally {
+            con.close();
+
+            if (con.isClosed()) {
+                System.out.println("Connection is closed!");
+            }
             System.out.println("--------------Insertions complete--------------");
         }
     }
