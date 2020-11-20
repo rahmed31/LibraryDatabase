@@ -110,11 +110,11 @@ public class InsertCardholders {
         String[] domains = {"@gmail.com", "@outlook.com", "@yahoo.com", "@icloud.com", "@aol.com", "@comcast.net", "@live.com"};
 
         if (type == 1) {
-            email = firstName.toLowerCase() + "." + lastName.toLowerCase() + domains[rnd.nextInt(6 - 1 + 1) + 1];
+            email = firstName.toLowerCase() + "." + lastName.toLowerCase() + domains[rnd.nextInt(6 - 0 + 1)];
         } else if (type == 2) {
-            email = firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 1 + 1) + 1];
+            email = firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 0 + 1)];
         } else if (type == 3) {
-            email = lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 1 + 1) + 1];
+            email = lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 0 + 1)];
         }
 
         return email;
