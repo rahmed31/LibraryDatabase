@@ -10,6 +10,8 @@ In order to build the database using MySQL Workbench, we must first design its s
 # Creating the Relational Schema
 We must now convert the ER diagram into a working Relational Model in order to build a functional database:
 
+![Relational Schema](lib/Relational-Schema.png?raw=true "Relational Schema")
+
 
 
 
