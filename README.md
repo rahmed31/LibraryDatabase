@@ -26,12 +26,9 @@ After building the database, create a file called dbInfo.java to store your data
         private static String username = "username";
         private static String password = "password";
 
-        public static String getUsername() {
-            return username;
-        }
-        public static String getPassword() {
-            return password;
-        }
+        public static String getUsername() {return username;}
+        
+        public static String getPassword() {return password;}
     }
 
 # Adding Random, but Meaningful, Data
