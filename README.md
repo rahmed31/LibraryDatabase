@@ -37,7 +37,7 @@ Random, yet meaningful, data can be added to the database (after connecting to i
 
 1. UniquePublishers.java: This file uses a hashmap to find unique publishers present in the first 500 entries of the "book_metadata.csv" file.
 2. InsertPublishers.java: This file inserts the unique publishers found in UniquePublishers.java into the database with their ID number. 
-3. InsertBooks.java: This file is used to insert book metadata into the 'Book' table using the CSV file "book_metadata.csv" provided on Kaggle. An N amount of entries can be created; however, in this instance, I use a limit of 500 book entries. A hash function is used to assign publisher IDs to each book entry.
+3. InsertBooks.java: This file is used to insert book metadata into the 'Book' table using the CSV file "book_metadata.csv" found on Kaggle. An N amount of entries can be created; however, in this instance, I use a limit of 500 book entries. A hash function is used to assign publisher IDs to each book entry.
 4. InsertCardholders.java: This file is used to randomly generate the first and last names of cardholders using first-names.txt and last-names.txt. Random phone numbers, emails, library card numbers, and addresses are generated as well from each of their associated TXT files. A limit of 50 library members are created.
 5. InsertEmployees.java: This file is used to randomly generate the first and last names of 30 library employees, as well as their employee IDs, salary, and desk location.
 6. InsertLocations.java: *To be created*
