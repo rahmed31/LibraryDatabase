@@ -1,1 +1,6 @@
+# File for storing DB info
 /src/dbInfo.java
+
+# IDEA
+/out/
+*.iml
