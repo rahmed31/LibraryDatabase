@@ -15,13 +15,13 @@ public class InsertCardholders {
     static Connection con = null;
     static Random rnd = new Random();
     static final int CAP = 50;
+    static Scanner reader = null;
 
     static {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDatabase?serverTimezone=UTC", dbInfo.getUsername(), dbInfo.getPassword());
             System.out.println("Connection successful!");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -33,11 +33,14 @@ public class InsertCardholders {
         ArrayList<String> first = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/first-names.txt");
         ArrayList<String> last = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/last-names.txt");
 
-        try {
-            File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-addresses.txt");
-            File myObj2 = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-phonenumbers.txt");
+        File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-addresses.txt");
+        File myObj2 = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-phonenumbers.txt");
 
-            Scanner reader = new Scanner(myObj);
+        String query = "INSERT INTO Cardholder VALUES (?, ?, ?, ?, ?, ?)";
+
+        //Reading address and phone number files and inserting data into their respective arrays
+        try {
+            reader = new Scanner(myObj);
 
             int i = 0;
             while (reader.hasNextLine()) {
@@ -57,20 +60,18 @@ public class InsertCardholders {
             }
             reader.close();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
         try {
-            String query = "INSERT INTO Cardholder VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStmt = con.prepareStatement(query);
 
             int count = 0;
 
-            while(count < 50) {
-                int cardNumber = rnd.nextInt( 50000 - 10000 + 1) + 10000;
+            while (count < 50) {
+                int cardNumber = rnd.nextInt(50000 - 10000 + 1) + 10000;
                 String lastName = last.get(rnd.nextInt(last.size() - 1 - 0 + 1));
                 String firstName = first.get(rnd.nextInt(first.size() - 1 - 0 + 1));
                 String address = addresses[count];
@@ -88,18 +89,17 @@ public class InsertCardholders {
 
                 count++;
             }
-
-            con.close();
-
-            if (con.isClosed()) {
-                System.out.println("Connection is closed!");
-            }
         }
         catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
         finally {
+            con.close();
+
+            if (con.isClosed()) {
+                System.out.println("Connection is closed!");
+            }
             System.out.println("--------------Insertions complete--------------");
         }
     }
@@ -110,13 +110,11 @@ public class InsertCardholders {
         String[] domains = {"@gmail.com", "@outlook.com", "@yahoo.com", "@icloud.com", "@aol.com", "@comcast.net", "@live.com"};
 
         if (type == 1) {
-            email = firstName.toLowerCase() + "." + lastName.toLowerCase() + domains[rnd.nextInt(6-1+1) + 1];
-        }
-        else if (type == 2) {
-            email = firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase() + String.valueOf(rnd.nextInt(20-1+1) + 1) + domains[rnd.nextInt(6-1+1) + 1];
-        }
-        else if (type == 3) {
-            email = lastName.toLowerCase() + String.valueOf(rnd.nextInt(20-1+1) + 1) + domains[rnd.nextInt(6-1+1) + 1];
+            email = firstName.toLowerCase() + "." + lastName.toLowerCase() + domains[rnd.nextInt(6 - 1 + 1) + 1];
+        } else if (type == 2) {
+            email = firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 1 + 1) + 1];
+        } else if (type == 3) {
+            email = lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 1 + 1) + 1];
         }
 
         return email;
@@ -126,12 +124,10 @@ public class InsertCardholders {
         ArrayList<String> names = new ArrayList<String>();
 
         File myObj = new File(path);
-        Scanner reader = null;
 
         try {
             reader = new Scanner(myObj);
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("An error occurred when reading the file");
             System.out.println(e.getMessage());
         }
@@ -146,5 +142,4 @@ public class InsertCardholders {
 
         return names;
     }
-
 }
