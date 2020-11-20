@@ -64,8 +64,8 @@ public class InsertEmployees {
 
             while(count < 30) {
                 int employeeID = rnd.nextInt( 60000 - 10000 + 1) + 10000;
-                String lastName = lastE.get(lastE.size() - 1 - 0 + 1);
-                String firstName = firstE.get(firstE.size() - 1 - 0 + 1);
+                String lastName = lastE.get(rnd.nextInt(lastE.size() - 1 - 0 + 1));
+                String firstName = firstE.get(rnd.nextInt(firstE.size() - 1 - 0 +1));
                 int salary = rnd.nextInt(90000 - 50000 + 1) + 50000;
 
                 preparedStmt.setInt(1, employeeID);
