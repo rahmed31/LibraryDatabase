@@ -7,7 +7,7 @@ This repository contains code to build and query from a database reminiscient of
 - A main driver with both simple and complex querying examples from the database.
 
 # Entity Relationship Diagram
-In order to build the database using MySQL Workbench, I have designed its structure using the following entity-relationship (ER) diagram. This allows us to model the behavior between each entity: 
+In order to build the database using MySQL Workbench, I have designed its structure using the following entity-relationship (ER) diagram. This allows us to model the expected behavior between each entity: 
 
 ![ER Diagram](lib/ER-Diagram.png?raw=true "ER Diagram")
 
