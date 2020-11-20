@@ -20,7 +20,7 @@ Using this relational schema, we can now build the actual library database using
 
 # Getting Started
 
-After creating the database, create a file called dbInfo.java to store your database credentials. This will be included in the .gitignore file and will not be commited. Within the file, put the following information (replacing where necessary): 
+After building the database, create a file called dbInfo.java to store your database credentials. This will be included in the .gitignore file and will not be commited. Within the file, put the following information (replacing where necessary): 
 
     public class dbInfo {
         private static String username = "username";
