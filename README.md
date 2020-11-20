@@ -12,7 +12,7 @@ In order to build the database using MySQL Workbench, I have designed its struct
 ![ER Diagram](lib/ER-Diagram.png?raw=true "ER Diagram")
 
 # Creating the Relational Schema
-The following relational model is a product of the ER diagram shown above. A relational schemas is built using the ideas from its corresponding ER diagram, while also using a structure and language consistent with first-order predicate logic. This allows our data to be represented in terms of tuples and subsequently grouped into relations:
+The following relational model is a product of the ER diagram shown above. A relational schemas is built using the ideas from its corresponding ER diagram, while also using a structure and language consistent with first-order predicate logic. This allows our data to be represented in terms of tuples, and subsequently grouped into relations:
 
 ![Relational Schema](lib/Relational-Schema.png?raw=true "Relational Schema")
 
