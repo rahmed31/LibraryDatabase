@@ -30,11 +30,11 @@ public class InsertCardholders {
         String[] addresses = new String[CAP];
         double[] phoneNumbers = new double[CAP];
 
-        ArrayList<String> first = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/first-names.txt");
-        ArrayList<String> last = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/last-names.txt");
+        ArrayList<String> first = extractNames("lib/first-names.txt");
+        ArrayList<String> last = extractNames("lib/last-names.txt");
 
-        File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-addresses.txt");
-        File myObj2 = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/random-phonenumbers.txt");
+        File myObj = new File("lib/random-addresses.txt");
+        File myObj2 = new File("lib/random-phonenumbers.txt");
 
         String query = "INSERT INTO Cardholder VALUES (?, ?, ?, ?, ?, ?)";
 

@@ -30,10 +30,10 @@ public class InsertBooks {
 
     public static void main(String[] args) throws Exception {
         //Create map of publisher and publisherID
-        HashMap<String, Integer> myMap = getPublisherMap("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
+        HashMap<String, Integer> myMap = getPublisherMap("lib/publishers.txt");
 
         //Insert book metadata
-        CSVReader reader = new CSVReader(new FileReader("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/book_metadata.csv"));
+        CSVReader reader = new CSVReader(new FileReader("lib/book_metadata.csv"));
         String query = "INSERT INTO Book VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {

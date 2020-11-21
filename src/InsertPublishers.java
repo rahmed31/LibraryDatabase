@@ -25,7 +25,7 @@ public class InsertPublishers {
     public static void main(String[] args) throws Exception {
         /* Record creation*/
         //Insert publishing house and id
-        File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
+        File myObj = new File("lib/publishers.txt");
         String query = "INSERT INTO Publisher VALUES (?, ?)";
 
         try {

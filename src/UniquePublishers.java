@@ -20,7 +20,7 @@ public class UniquePublishers {
 
         //find unique publishers within the first 500 records
         try {
-            reader = new CSVReader(new FileReader("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/book_metadata.csv"));
+            reader = new CSVReader(new FileReader("lib/book_metadata.csv"));
 
             //remove column names
             String[] nextLine = reader.readNext();
@@ -43,7 +43,7 @@ public class UniquePublishers {
 
         //create new txt file to save publisher names
         try {
-            File myObj = new File("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
+            File myObj = new File("lib/publishers.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -57,7 +57,7 @@ public class UniquePublishers {
 
         //save unique publishers in txt file
         try {
-            FileWriter myWriter = new FileWriter("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/publishers.txt");
+            FileWriter myWriter = new FileWriter("lib/publishers.txt");
             for (String i : publishers.keySet()) {
                 myWriter.write(i + "\n");
             }

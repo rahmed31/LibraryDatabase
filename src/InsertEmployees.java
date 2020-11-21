@@ -27,8 +27,8 @@ public class InsertEmployees {
 
     public static void main(String[] args) throws Exception {
         //Insert Employee data
-        ArrayList<String> firstE = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/first-names.txt");
-        ArrayList<String> lastE = extractNames("/Users/raihanahmed/IdeaProjects/LibraryDatabase/lib/last-names.txt");
+        ArrayList<String> firstE = extractNames("lib/first-names.txt");
+        ArrayList<String> lastE = extractNames("lib/last-names.txt");
 
         String query = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?)";
 
