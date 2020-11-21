@@ -2,6 +2,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /*
@@ -22,7 +23,7 @@ public class InsertPublishers {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException {
         /* Record creation*/
         //Insert publishing house and id
         File myObj = new File("lib/publishers.txt");

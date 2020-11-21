@@ -25,7 +25,7 @@ public class InsertEmployees {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException {
         //Insert Employee data
         ArrayList<String> firstE = extractNames("lib/first-names.txt");
         ArrayList<String> lastE = extractNames("lib/last-names.txt");

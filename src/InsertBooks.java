@@ -33,10 +33,11 @@ public class InsertBooks {
         HashMap<String, Integer> myMap = getPublisherMap("lib/publishers.txt");
 
         //Insert book metadata
-        CSVReader reader = new CSVReader(new FileReader("lib/book_metadata.csv"));
         String query = "INSERT INTO Book VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
+            CSVReader reader = new CSVReader(new FileReader("lib/book_metadata.csv"));
+
             PreparedStatement preparedStmt = con.prepareStatement(query);
 
             //remove column names

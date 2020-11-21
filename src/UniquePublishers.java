@@ -13,7 +13,7 @@ Unique publishers for a limit of 500 entries are saved into publishers.txt
  */
 
 public class UniquePublishers {
-    public static void main(String[] args) throws Exception, IOException {
+    public static void main(String[] args) {
         CSVReader reader = null;
 
         HashMap <String, Integer> publishers = new HashMap<String, Integer> ();

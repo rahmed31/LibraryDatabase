@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class InsertCardholders {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException {
         String[] addresses = new String[CAP];
         double[] phoneNumbers = new double[CAP];
 
