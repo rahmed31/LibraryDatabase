@@ -22,7 +22,8 @@ public class InsertCardholders {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryDatabase?serverTimezone=UTC", dbInfo.getUsername(), dbInfo.getPassword());
             System.out.println("Connection successful!");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -34,13 +35,12 @@ public class InsertCardholders {
         ArrayList<String> first = extractNames("lib/first-names.txt");
         ArrayList<String> last = extractNames("lib/last-names.txt");
 
-        File myObj = new File("lib/random-addresses.txt");
-        File myObj2 = new File("lib/random-phonenumbers.txt");
-
         String query = "INSERT INTO Cardholder VALUES (?, ?, ?, ?, ?, ?)";
 
         //Reading address and phone number files and inserting data into their respective arrays
         try {
+            File myObj = new File("lib/random-addresses.txt");
+            File myObj2 = new File("lib/random-phonenumbers.txt");
             reader = new Scanner(myObj);
 
             int i = 0;
@@ -49,7 +49,6 @@ public class InsertCardholders {
                 addresses[i] = data;
                 i++;
             }
-            reader.close();
 
             reader = new Scanner(myObj2);
 
@@ -59,11 +58,13 @@ public class InsertCardholders {
                 phoneNumbers[j] = data;
                 j++;
             }
-            reader.close();
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        }
+        finally {
+            reader.close();
         }
 
         try {
@@ -124,22 +125,24 @@ public class InsertCardholders {
     public static ArrayList<String> extractNames(String path) {
         ArrayList<String> names = new ArrayList<String>();
 
-        File myObj = new File(path);
-
         try {
+            File myObj = new File(path);
             reader = new Scanner(myObj);
-        } catch (FileNotFoundException e) {
+
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
+                String output = data.substring(0, 1) + data.substring(1).toLowerCase();
+                names.add(output);
+            }
+
+        }
+        catch (FileNotFoundException e) {
             System.out.println("An error occurred when reading the file");
             System.out.println(e.getMessage());
         }
-
-        while (reader.hasNextLine()) {
-            String data = reader.nextLine();
-            String output = data.substring(0, 1) + data.substring(1).toLowerCase();
-            names.add(output);
+        finally {
+            reader.close();
         }
-
-        reader.close();
 
         return names;
     }

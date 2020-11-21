@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
@@ -28,7 +29,7 @@ public class InsertBooks {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException {
         //Create map of publisher and publisherID
         HashMap<String, Integer> myMap = getPublisherMap("lib/publishers.txt");
 
@@ -77,24 +78,25 @@ public class InsertBooks {
     }
     public static HashMap<String, Integer> getPublisherMap(String path) {
         HashMap<String, Integer> myMap = new HashMap<String, Integer>();
-        File myObj = new File(path);
 
         try {
+            File myObj = new File(path);
             reader = new Scanner(myObj);
+
+            int i = 1;
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
+                myMap.put(data, i);
+                i++;
+            }
         }
         catch (FileNotFoundException e) {
             System.out.println("An error occurred when trying to read the file");
             System.out.println(e.getMessage());
         }
-
-        int i = 1;
-        while (reader.hasNextLine()) {
-            String data = reader.nextLine();
-            myMap.put(data, i);
-            i++;
+        finally {
+            reader.close();
         }
-
-        reader.close();
 
         return myMap;
     }

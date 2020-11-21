@@ -39,13 +39,14 @@ public class InsertPublishers {
                 preparedStmt.setString(2, data);
                 preparedStmt.execute();
             }
-            reader.close();
         }
         catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
         finally {
+            reader.close();
+
             con.close();
 
             if (con.isClosed()) {

@@ -15,6 +15,7 @@ Unique publishers for a limit of 500 entries are saved into publishers.txt
 public class UniquePublishers {
     public static void main(String[] args) {
         CSVReader reader = null;
+        FileWriter myWriter = null;
 
         HashMap <String, Integer> publishers = new HashMap<String, Integer> ();
 
@@ -40,6 +41,15 @@ public class UniquePublishers {
         catch (Exception e) {
             e.getMessage();
         }
+        finally {
+            try {
+                reader.close();
+            }
+            catch (IOException e) {
+                System.out.println("Error with closing the file.");
+                System.out.println(e.getMessage());
+            }
+        }
 
         //create new txt file to save publisher names
         try {
@@ -57,16 +67,24 @@ public class UniquePublishers {
 
         //save unique publishers in txt file
         try {
-            FileWriter myWriter = new FileWriter("lib/publishers.txt");
+            myWriter = new FileWriter("lib/publishers.txt");
             for (String i : publishers.keySet()) {
                 myWriter.write(i + "\n");
             }
-            myWriter.close();
             System.out.println("Successfully wrote to the file.");
         }
         catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        }
+        finally {
+            try {
+                myWriter.close();
+            }
+            catch(IOException e) {
+                System.out.println("Error with closing the file.");
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

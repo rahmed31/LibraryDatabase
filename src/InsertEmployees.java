@@ -69,23 +69,23 @@ public class InsertEmployees {
     public static ArrayList<String> extractNames(String path) {
         ArrayList<String> names = new ArrayList<String>();
 
-        File myObj = new File(path);
-
         try {
+            File myObj = new File(path);
             reader = new Scanner(myObj);
+
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
+                String output = data.substring(0, 1) + data.substring(1).toLowerCase();
+                names.add(output);
+            }
         }
         catch (FileNotFoundException e) {
             System.out.println("An error occurred when reading the file");
             System.out.println(e.getMessage());
         }
-
-        while (reader.hasNextLine()) {
-            String data = reader.nextLine();
-            String output = data.substring(0, 1) + data.substring(1).toLowerCase();
-            names.add(output);
+        finally {
+            reader.close();
         }
-
-        reader.close();
 
         return names;
     }
