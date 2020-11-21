@@ -4,3 +4,4 @@
 # IDEA
 /out/
 *.iml
+/src/.idea/
