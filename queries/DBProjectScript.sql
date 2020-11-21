@@ -16,7 +16,7 @@ PRIMARY KEY (cardNumber)
 );
 
 CREATE TABLE Publisher (
-publisherID INTEGER NOT NULL,
+publisherID INTEGER NOT NULL AUTO_INCREMENT,
 publisherName VARCHAR(40) NOT NULL,
 PRIMARY KEY(publisherID)
 );
