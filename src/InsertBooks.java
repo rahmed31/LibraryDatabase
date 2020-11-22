@@ -49,7 +49,7 @@ public class InsertBooks {
             int count = 0;
 
             while((nextLine = reader.readNext()) != null && count < 500) {
-                int floor = 1;
+                int floor = 4;
 
                 if (nextLine[1].compareTo("G") < 0) {
                     floor = 1;
@@ -59,9 +59,6 @@ public class InsertBooks {
                 }
                 else if (nextLine[1].compareTo("S") < 0) {
                     floor = 3;
-                }
-                else {
-                    floor = 4;
                 }
 
                 int random = rnd.nextInt(7 - 1 + 1) + 1;
