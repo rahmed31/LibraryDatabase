@@ -71,12 +71,10 @@ FOREIGN KEY (bookID) REFERENCES Book(bookID) ON UPDATE CASCADE
 );
 
 CREATE TABLE Reserves (
-reservationID INTEGER NOT NULL,
 memberID INTEGER NOT NULL,
 floorLocation INTEGER NOT NULL,
 computer BOOLEAN,
 studyroom BOOLEAN,
-PRIMARY KEY (reservationID),
 FOREIGN KEY (memberID) REFERENCES Cardholder(cardNumber),
 FOREIGN KEY (floorLocation) REFERENCES Location(floorNumber)
 );
