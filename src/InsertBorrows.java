@@ -94,8 +94,6 @@ public class InsertBorrows {
 
                 count++;
             }
-
-
         }
         catch (Exception e) {
             System.out.println("An error occurred.");
