@@ -30,7 +30,7 @@ public class InsertEmployees {
         ArrayList<String> firstE = extractNames("lib/first-names.txt");
         ArrayList<String> lastE = extractNames("lib/last-names.txt");
 
-        String query = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -42,12 +42,15 @@ public class InsertEmployees {
                 String lastName = lastE.get(rnd.nextInt(lastE.size() - 1 - 0 + 1));
                 String firstName = firstE.get(rnd.nextInt(firstE.size() - 1 - 0 +1));
                 int salary = rnd.nextInt(90000 - 50000 + 1) + 50000;
+                int extension = rnd.nextInt(9000-1000 + 1) + 1000;
+                int floorNumber = rnd.nextInt(4-1 + 1) + 1;
 
                 preparedStmt.setInt(1, employeeID);
                 preparedStmt.setString(2, lastName);
                 preparedStmt.setString(3, firstName);
-                preparedStmt.setString(4, "hello");
-                preparedStmt.setInt(5, salary);
+                preparedStmt.setInt(4, extension);
+                preparedStmt.setInt(5, floorNumber);
+                preparedStmt.setInt(6, salary);
                 preparedStmt.execute();
 
                 count++;

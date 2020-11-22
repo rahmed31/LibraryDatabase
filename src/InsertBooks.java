@@ -1,4 +1,6 @@
 import com.opencsv.CSVReader;
+
+import java.awt.print.Book;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -47,10 +49,25 @@ public class InsertBooks {
             int count = 0;
 
             while((nextLine = reader.readNext()) != null && count < 500) {
+                int floor = 1;
+
+                if (nextLine[1].compareTo("G") < 0) {
+                    floor = 1;
+                }
+                else if (nextLine[1].compareTo("M") < 0) {
+                    floor = 2;
+                }
+                else if (nextLine[1].compareTo("S") < 0) {
+                    floor = 3;
+                }
+                else {
+                    floor = 4;
+                }
+
                 int random = rnd.nextInt(7 - 1 + 1) + 1;
                 preparedStmt.setInt(1, 0);
                 preparedStmt.setInt(2, myMap.get(nextLine[4]));
-                preparedStmt.setString(3, null);
+                preparedStmt.setInt(3, floor);
                 preparedStmt.setString(4, nextLine[0]);
                 preparedStmt.setString(5, nextLine[1]);
                 preparedStmt.setString(6, nextLine[2]);
