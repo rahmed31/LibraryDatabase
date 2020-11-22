@@ -41,5 +41,9 @@ Random, yet meaningful, data can be added to the database (after connecting to i
 4. InsertBooks.java: This file is used to insert book metadata into the 'Book' table using the CSV file "book_metadata.csv". An N amount of entries can be created; however, for the sake of time and space, I use a limit of 500 book entries. A hash function is used to assign publisher IDs to each book entry.
 5. InsertCardholders.java: This file is used to randomly generate the first and last names of cardholders using first-names.txt and last-names.txt. Random phone numbers, emails, library card numbers, and addresses are generated as well from each of their associated TXT files. A total of 50 library members are created.
 6. InsertEmployees.java: This file is used to randomly generate the first and last names of 30 library employees, includingm their employee IDs, salary, and desk location.
-7. InsertBorrows.java: *To be created*
-8. InsertReserves.java: *To be created*
+7. InsertBorrows.java: This file is used to randomly generate book checkout information for 25 different library members, with up to 75 entries in total.
+8. InsertReserves.java: This file is used to randomly generate computer or studyroom reservation information for 13 different library members.
+
+# Example Program
+
+A few example queries have been written in src/Main.java and can be executed according to the database architecture. Feel free to construct and execute your own queries according to the logic provided within the ER and Relational diagrams. 
