@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /*
 Class for reading books_metadata.csv containing sample book metadata.
-Unique publishers for a limit of 500 entries are saved into publishers.txt
+Unique publishers for a limit of 1500 entries are saved into publishers.txt
  */
 
 public class UniquePublishers {
@@ -28,7 +28,7 @@ public class UniquePublishers {
 
             int count = 0;
 
-            while((nextLine = reader.readNext()) != null && count < 500) {
+            while((nextLine = reader.readNext()) != null && count < 1500) {
 
                 if (publishers.containsKey(nextLine[4])) {
                     publishers.put(nextLine[4], publishers.get(nextLine[4]) + 1);
