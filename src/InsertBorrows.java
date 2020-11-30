@@ -9,7 +9,7 @@ Class for inserting random information into the Borrows table.
 public class InsertBorrows {
 
     static Connection con = null;
-    static final int CAP = 25;
+    static final int CAP = 40;
     static Random rnd = new Random();
     static Scanner reader = null;
 
@@ -37,7 +37,7 @@ public class InsertBorrows {
         //random cardholder ids
         try {
             stmt = con.createStatement();
-            results = stmt.executeQuery("SELECT cardNumber AS 'id' FROM Cardholder ORDER BY RAND() LIMIT 25");
+            results = stmt.executeQuery("SELECT cardNumber AS 'id' FROM Cardholder ORDER BY RAND() LIMIT 40");
             int i = 0;
             while(results.next()) {
                 ids[i] = results.getInt("id");
@@ -65,12 +65,19 @@ public class InsertBorrows {
                 borrowDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(10 - 1 + 1) + 1);
                 dueDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(18 - 11 + 1) + 11);
                 returnDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(22 - 12 + 1) + 12);
+                boolean trigger = rnd.nextBoolean();
 
                 preparedStmt.setInt(1, borrowerID);
                 preparedStmt.setInt(2, bookID);
                 preparedStmt.setString(3, borrowDate);
                 preparedStmt.setString(4, dueDate);
-                preparedStmt.setString(5, returnDate);
+
+                if (trigger) {
+                    preparedStmt.setString(5, returnDate);
+                }
+                else {
+                    preparedStmt.setString(5, null);
+                }
                 preparedStmt.execute();
 
                 count++;
@@ -84,12 +91,20 @@ public class InsertBorrows {
                 borrowDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(10 - 1 + 1) + 1);
                 dueDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(18 - 11 + 1) + 11);
                 returnDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(22 - 12 + 1) + 12);
+                boolean trigger = rnd.nextBoolean();
 
                 preparedStmt.setInt(1, borrowerID);
                 preparedStmt.setInt(2, bookID);
                 preparedStmt.setString(3, borrowDate);
                 preparedStmt.setString(4, dueDate);
-                preparedStmt.setString(5, returnDate);
+
+                if (trigger) {
+                    preparedStmt.setString(5, returnDate);
+                }
+                else {
+                    preparedStmt.setString(5, null);
+                }
+
                 preparedStmt.execute();
 
                 count++;
