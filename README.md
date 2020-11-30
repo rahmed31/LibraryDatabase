@@ -35,14 +35,14 @@ After building the database, create a file called dbInfo.java to store your data
 
 Random, yet meaningful, data can be added to the database (after connecting to it via MySQL Connector 8.0.22) using the following files in sequential order:
 
-1. UniquePublishers.java: This file uses a hashmap to find unique publishers present in the first 500 entries of the "book_metadata.csv" file found on Kaggle.
+1. UniquePublishers.java: This file uses a hashmap to find unique publishers present in the first 1500 entries of the "book_metadata.csv" file found on Kaggle.
 2. InsertPublishers.java: This file inserts the unique publishers found in UniquePublishers.java into the database with their ID number.
 3. InsertLocations.java: This file is used to randomly generate location information (up to four separate floors with computers and studyrooms) for the library. 
-4. InsertBooks.java: This file is used to insert book metadata into the 'Book' table using the CSV file "book_metadata.csv". An N amount of entries can be created; however, for the sake of time and space, I use a limit of 500 book entries. A hash function is used to assign publisher IDs to each book entry.
+4. InsertBooks.java: This file is used to insert book metadata into the 'Book' table using the CSV file "book_metadata.csv". An N amount of entries can be created; however, for the sake of time and space, I use a limit of 1500 book entries. A hash function is used to assign publisher IDs to each book entry.
 5. InsertCardholders.java: This file is used to randomly generate the first and last names of cardholders using first-names.txt and last-names.txt. Random phone numbers, emails, library card numbers, and addresses are generated as well from each of their associated TXT files. A total of 50 library members are created.
 6. InsertEmployees.java: This file is used to randomly generate the first and last names of 30 library employees, including their employee IDs, salary, and desk location.
-7. InsertBorrows.java: This file is used to randomly generate book checkout information for 25 different library members, with up to 75 entries in total.
-8. InsertReserves.java: This file is used to randomly generate computer or studyroom reservation information for 13 different library members.
+7. InsertBorrows.java: This file is used to randomly generate book checkout information for 40 different library members, with up to 120 entries in total.
+8. InsertReserves.java: This file is used to randomly generate computer or studyroom reservation information for 15 different library members.
 
 # Example Program
 
