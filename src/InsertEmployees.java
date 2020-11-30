@@ -13,6 +13,7 @@ public class InsertEmployees {
     static Connection con = null;
     static Random rnd = new Random();
     static Scanner reader = null;
+    static final int CAP = 30;
 
     static {
         try {
@@ -37,7 +38,7 @@ public class InsertEmployees {
 
             int count = 0;
 
-            while (count < 30) {
+            while (count < CAP) {
                 int employeeID = rnd.nextInt( 60000 - 10000 + 1) + 10000;
                 String lastName = lastE.get(rnd.nextInt(lastE.size() - 1 - 0 + 1));
                 String firstName = firstE.get(rnd.nextInt(firstE.size() - 1 - 0 +1));
