@@ -8,7 +8,7 @@ Class for inserting random information into the Reserves table.
 
 public class InsertReserves {
     static Connection con = null;
-    static final int CAP = 13;
+    static final int CAP = 15;
     static Random rnd = new Random();
     static Scanner reader = null;
 
@@ -36,7 +36,7 @@ public class InsertReserves {
         //random cardholder ids
         try {
             stmt = con.createStatement();
-            results = stmt.executeQuery("SELECT cardNumber AS 'id' FROM Cardholder ORDER BY RAND() LIMIT 13");
+            results = stmt.executeQuery("SELECT cardNumber AS 'id' FROM Cardholder ORDER BY RAND() LIMIT 15");
             int i = 0;
             while(results.next()) {
                 ids[i] = results.getInt("id");
