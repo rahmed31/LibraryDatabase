@@ -34,7 +34,7 @@ public class InsertBooks {
     public static void main(String[] args) throws SQLException {
         //Create map of publisher and publisherID
         HashMap<String, Integer> myMap = getPublisherMap("lib/publishers.txt");
-
+        int count = 0;
         //Insert book metadata
         String query = "INSERT INTO Book VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -43,12 +43,11 @@ public class InsertBooks {
 
             PreparedStatement preparedStmt = con.prepareStatement(query);
 
+
             //remove column names
             String[] nextLine = reader.readNext();
 
-            int count = 0;
-
-            while((nextLine = reader.readNext()) != null && count < 500) {
+            while((nextLine = reader.readNext()) != null && count < 1500) {
                 int floor = 4;
 
                 if (nextLine[1].compareTo("G") < 0) {
@@ -63,7 +62,14 @@ public class InsertBooks {
 
                 int random = rnd.nextInt(7 - 1 + 1) + 1;
                 preparedStmt.setInt(1, 0);
-                preparedStmt.setInt(2, myMap.get(nextLine[4]));
+
+                if (myMap.get(nextLine[4]) != null) {
+                    preparedStmt.setInt(2, myMap.get(nextLine[4]));
+                }
+                else {
+                    preparedStmt.setInt(2, 314);
+                }
+
                 preparedStmt.setInt(3, floor);
                 preparedStmt.setString(4, nextLine[0]);
                 preparedStmt.setString(5, nextLine[1]);
@@ -75,6 +81,7 @@ public class InsertBooks {
                 preparedStmt.execute();
                 count++;
             }
+
             reader.close();
         }
         catch (Exception e) {
