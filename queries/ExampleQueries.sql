@@ -7,7 +7,8 @@ However, the constructed queries are tailored such that the desirable output is 
 */
 
 -- Query 1 --
--- Select the publishers, and count of books that each publisher has in the database, that have at least 20 books in the library's inventory --
+/* Select the publishers, and count of books that each publisher has in the database, that 
+have at least 20 books in the library's inventory */
 SELECT publisherName, COUNT(bookID) 
 FROM Publisher 
 JOIN Book ON Book.publisherID = Publisher.publisherID
@@ -39,7 +40,10 @@ GROUP BY floorNumber;
 
 -- Query 5 --
 -- Find the number of available studyrooms on the first floor --
-SELECT (SELECT studyrooms FROM Location WHERE floorNumber = 1) - (SELECT COUNT(studyroom) FROM Reserves WHERE floorLocation = 1 AND studyroom = 1) AS Difference;
+SELECT 
+(SELECT studyrooms FROM Location WHERE floorNumber = 1) - 
+(SELECT COUNT(studyroom) FROM Reserves WHERE floorLocation = 1 AND studyroom = 1) 
+AS Difference;
 
 -- Query 6 --
 -- Find the names of employees, and their salaries, that make more than the average employee salary. --
@@ -47,7 +51,9 @@ SELECT firstName, lastName, salary FROM Employee WHERE salary > (SELECT AVG(sala
 
 -- Query 7 --
 -- Find the names and extensions of employees that can help with finding the book 'Goodbye to the Buttermilk Sky' -- 
-SELECT firstName, lastName, extension FROM Employee WHERE floorNumber = (SELECT floorLocation FROM Book WHERE title = 'Goodbye to the Buttermilk Sky');
+SELECT firstName, lastName, extension 
+FROM Employee 
+WHERE floorNumber = (SELECT floorLocation FROM Book WHERE title = 'Goodbye to the Buttermilk Sky');
 
 -- Query 8 --
 -- Find the names of the top 8 most frequently checked out books of the month and their information -- 
