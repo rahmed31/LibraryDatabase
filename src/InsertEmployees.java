@@ -28,8 +28,8 @@ public class InsertEmployees {
 
     public static void main(String[] args) throws SQLException {
         //Insert Employee data
-        ArrayList<String> firstE = extractNames("lib/first-names.txt");
-        ArrayList<String> lastE = extractNames("lib/last-names.txt");
+        ArrayList<String> firstE = InsertCardholders.extractNames("lib/first-names.txt");
+        ArrayList<String> lastE = InsertCardholders.extractNames("lib/last-names.txt");
 
         String query = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -69,28 +69,5 @@ public class InsertEmployees {
             }
             System.out.println("--------------Insertions complete--------------");
         }
-    }
-    public static ArrayList<String> extractNames(String path) {
-        ArrayList<String> names = new ArrayList<String>();
-
-        try {
-            File myObj = new File(path);
-            reader = new Scanner(myObj);
-
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                String output = data.substring(0, 1) + data.substring(1).toLowerCase();
-                names.add(output);
-            }
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("An error occurred when reading the file");
-            System.out.println(e.getMessage());
-        }
-        finally {
-            reader.close();
-        }
-
-        return names;
     }
 }
