@@ -24,7 +24,7 @@ public class Main {
             Statement stmt = con.createStatement();
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println("Welcome to the library database querying interface!\n\nBelow you'll find a list of 8 queries. Enter the number of the query to execute it:\n");
+            System.out.println("Welcome to the library database querying interface!\n\nBelow you'll find a list of 8 queries. Enter the number of the query you wish to execute it:\n");
             System.out.println("1. Select the publishers, and count of books that each publisher has in the database, that have at least 20 books in the library's inventory.");
             System.out.println("2. Find the names and emails of people who have checked out books and not yet returned them.");
             System.out.println("3. Find the names and emails of people who returned a book late.");
