@@ -106,7 +106,7 @@ public class InsertCardholders {
         }
     }
 
-    public static String generateEmail(String firstName, String lastName, int type) {
+    public static String generateEmail(String firstName, String lastName, int type) throws IndexOutOfBoundsException {
         String email = "";
         Random rnd = new Random();
         String[] domains = {"@gmail.com", "@outlook.com", "@yahoo.com", "@icloud.com", "@aol.com", "@comcast.net", "@live.com"};
@@ -117,6 +117,9 @@ public class InsertCardholders {
             email = firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 0 + 1)];
         } else if (type == 3) {
             email = lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 0 + 1)];
+        }
+        else {
+            throw new IllegalArgumentException("Third argument must be an integer between 1 and 3, inclusive.");
         }
 
         return email;
