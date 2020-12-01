@@ -48,10 +48,11 @@ public class Main {
                     System.out.println("Invalid input. Try again.");
                 }
 
-                if (query > 8) {
+                if (query <= 0 ^ query > 8) {
                     System.out.println("Invalid input. Try again.");
                 }
-                else if (query == 1) {
+
+                if (query == 1) {
                     results = stmt.executeQuery("SELECT publisherName, COUNT(bookID) FROM Publisher JOIN Book ON Book.publisherID = Publisher.publisherID\n" +
                             "GROUP BY publisherName\n" +
                             "HAVING COUNT(bookID) >= 20\n" +
