@@ -46,4 +46,4 @@ Random, yet meaningful, data can be added to the database (after connecting to i
 
 # Example Program
 
-A few example queries have been written in src/Main.java and can be executed in accordance to the database architecture. Feel free to construct and execute your own queries using the logic provided within the ER and Relational diagrams. 
+A few example queries have been written in src/Main.java and can be executed in accordance to the database architecture. The queries written in SQL are located under queries > ExampleQueries.sql. Feel free to construct and execute your own queries using the logic provided within the ER and Relational diagrams. 
