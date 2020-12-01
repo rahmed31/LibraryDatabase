@@ -30,7 +30,7 @@ public class Main {
             System.out.println("3. Find the names and emails of people who returned a book late.");
             System.out.println("4. Find the amount of employees working on each floor.");
             System.out.println("5. Find the number of available studyrooms on the first floor.");
-            System.out.println("6. Find the names of the employees, and their salaries, that make more than the average employee salary.");
+            System.out.println("6. Find the names of employees, and their salaries, that make more than the average employee salary.");
             System.out.println("7. Find the names and extensions of employees that can help with finding the book 'Goodbye to the Buttermilk Sky.'");
             System.out.println("8. Find the names of the top 8 most frequently checked out books of the month and their information.");
 
