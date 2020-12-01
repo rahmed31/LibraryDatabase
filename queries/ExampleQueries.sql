@@ -21,7 +21,8 @@ ORDER BY COUNT(bookID) ASC;
 SELECT lastName, firstName, email, COUNT(borrowerID)
 FROM Cardholder
 JOIN Borrows ON Cardholder.cardNumber = Borrows.borrowerID
-WHERE returnDate IS NULL GROUP BY cardNumber
+WHERE returnDate IS NULL 
+GROUP BY cardNumber
 ORDER BY lastName;
 
 -- Query 3 --
@@ -29,7 +30,8 @@ ORDER BY lastName;
 SELECT lastName, firstName, email, COUNT(borrowerID)
 FROM Cardholder
 JOIN Borrows ON Cardholder.cardNumber = Borrows.borrowerID
-WHERE MONTH(returnDate) - MONTH(dueDate) = 0 AND DAY(returnDate) - DAY(dueDate) > 0 GROUP BY cardNumber
+WHERE MONTH(returnDate) - MONTH(dueDate) = 0 AND DAY(returnDate) - DAY(dueDate) > 0 AND returnDate IS NOT NULL 
+GROUP BY cardNumber
 ORDER BY lastName;
 
 -- Query 4 --
