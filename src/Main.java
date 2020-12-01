@@ -140,7 +140,7 @@ public class Main {
 
                     System.out.printf("%-75.75s  %-1000.1000s%n", "Book Title", "Book Info");
                     while(results.next()) {
-                        System.out.printf("%-75.75s  %-1000.1000s%n", results.getString("Book.title"), results.getString("bookInfo"));
+                        System.out.printf("%-75.75s  %s%n", results.getString("Book.title"), results.getString("bookInfo"));
                     }
                     System.out.println();
                 }
