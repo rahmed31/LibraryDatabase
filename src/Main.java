@@ -62,28 +62,29 @@ public class Main {
                     System.out.println();
                 }
                 else if (query == 2) {
-                    results = stmt.executeQuery("SELECT lastName, firstName, email\n" +
+                    results = stmt.executeQuery("SELECT lastName, firstName, email, COUNT(borrowerID)\n" +
                             "FROM Cardholder\n" +
                             "JOIN Borrows ON Cardholder.cardNumber = Borrows.borrowerID\n" +
                             "WHERE returnDate IS NULL GROUP BY cardNumber\n" +
                             "ORDER BY lastName;");
 
-                    System.out.printf("%-15.15s  %-15.15s %-20.30s%n", "Last Name", "First Name", "Email Address");
+                    System.out.printf("%-15.15s  %-15.15s %-15.15s %-20.30s%n", "Last Name", "First Name", "Book Count", "Email Address");
                     while(results.next()) {
-                        System.out.printf("%-15.15s %-15.15s %-20.30s%n", results.getString("lastName"), results.getString("firstName"), results.getString("email"));
+                        System.out.printf("%-15.15s %-15.15s %-15.15s %-20.30s%n", results.getString("lastName"), results.getString("firstName"), results.getInt("COUNT(borrowerID)"), results.getString("email"));
                     }
                     System.out.println();
                 }
                 else if (query == 3) {
-                    results = stmt.executeQuery("SELECT lastName, firstName, email\n" +
+                    results = stmt.executeQuery("SELECT lastName, firstName, email, COUNT(borrowerID)\n" +
                             "FROM Cardholder\n" +
                             "JOIN Borrows ON Cardholder.cardNumber = Borrows.borrowerID\n" +
-                            "WHERE MONTH(returnDate) - MONTH(dueDate) = 0 AND DAY(returnDate) - DAY(dueDate) > 0 GROUP BY cardNumber\n" +
+                            "WHERE MONTH(returnDate) - MONTH(dueDate) = 0 AND DAY(returnDate) - DAY(dueDate) > 0\n" +
+                            "GROUP BY cardNumber\n" +
                             "ORDER BY lastName;");
 
-                    System.out.printf("%-15.15s  %-15.15s %-20.30s%n", "Last Name", "First Name", "Email Address");
+                    System.out.printf("%-15.15s  %-15.15s %-15.15s %-20.30s%n", "Last Name", "First Name", "Book Count", "Email Address");
                     while(results.next()) {
-                        System.out.printf("%-15.15s %-15.15s %-20.30s%n", results.getString("lastName"), results.getString("firstName"), results.getString("email"));
+                        System.out.printf("%-15.15s %-15.15s %-15.15s %-20.30s%n", results.getString("lastName"), results.getString("firstName"), results.getInt("COUNT(borrowerID)"), results.getString("email"));
                     }
                     System.out.println();
                 }
