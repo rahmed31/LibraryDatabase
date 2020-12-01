@@ -46,10 +46,7 @@ public class Main {
                 }
                 catch (NumberFormatException e) {
                     System.out.println("Invalid input. Try again.");
-                }
-
-                if (query <= 0 ^ query > 8) {
-                    System.out.println("Invalid input. Try again.");
+                    continue;
                 }
 
                 if (query == 1) {
@@ -146,6 +143,9 @@ public class Main {
                         System.out.printf("%-75.75s  %-1000.1000s%n", results.getString("Book.title"), results.getString("bookInfo"));
                     }
                     System.out.println();
+                }
+                else {
+                    System.out.println("Invalid input. Try again.");
                 }
             }
         }
