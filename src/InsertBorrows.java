@@ -87,7 +87,7 @@ public class InsertBorrows {
 
             while (count < CAP*2) {
                 borrowerID = ids[rnd.nextInt(CAP - 1 + 1)];
-                bookID = rnd.nextInt(500 - 1 + 1) + 1;
+                bookID = rnd.nextInt(1500 - 500 + 1) + 300;
                 borrowDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(10 - 1 + 1) + 1);
                 dueDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(18 - 11 + 1) + 11);
                 returnDate = 2020 + "-" + 11 + "-" + (rnd.nextInt(22 - 12 + 1) + 12);
