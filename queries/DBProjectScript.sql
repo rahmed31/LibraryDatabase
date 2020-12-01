@@ -17,16 +17,19 @@ PRIMARY KEY (cardNumber)
 
 CREATE TABLE Publisher (
 publisherID INTEGER NOT NULL AUTO_INCREMENT,
-publisherName VARCHAR(40) NOT NULL,
+publisherName VARCHAR(80) NOT NULL,
 PRIMARY KEY(publisherID)
 );
 
+-- figure out way to make check function --
 CREATE TABLE Location (
 floorNumber INTEGER NOT NULL,
 studyrooms INTEGER NOT NULL,
 computers INTEGER NOT NULL,
-availableRooms INTEGER NOT NULL,
-availableComputers INTEGER NOT NULL,
+-- availableRooms INTEGER NOT NULL,
+-- availableComputers INTEGER NOT NULL,
+-- CHECK (availableRooms >= 0),
+-- CHECK (availableComputers >= 0),
 PRIMARY KEY(floorNumber)
 );
 
@@ -50,7 +53,7 @@ ISBN VARCHAR(20) NOT NULL,
 title VARCHAR(250) NOT NULL,
 author VARCHAR(50) NOT NULL,
 copies INTEGER NOT NULL,
-availability INTEGER,
+-- availability INTEGER,
 publicationYear INTEGER NOT NULL,
 bookInfo MEDIUMTEXT NOT NULL,
 CHECK (copies > 0),
