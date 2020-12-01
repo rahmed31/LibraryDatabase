@@ -119,7 +119,7 @@ public class InsertCardholders {
             email = lastName.toLowerCase() + String.valueOf(rnd.nextInt(20 - 1 + 1) + 1) + domains[rnd.nextInt(6 - 0 + 1)];
         }
         else {
-            throw new IllegalArgumentException("Third argument must be an integer between 1 and 3, inclusive.");
+            throw new IllegalArgumentException("Third argument must be a randomg integer between 1 and 3, inclusive.");
         }
 
         return email;
