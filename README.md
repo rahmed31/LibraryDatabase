@@ -5,6 +5,7 @@ This repository contains code to build and query from a MySQL database reminisce
 
 - Additional entities and attributes that would most likely be incorporated within a real library database.
 - Additional example queries that can be executed in src/Main.java
+- Additional functionality to add or remove objects from the database within the given constraints. 
 
 # Entity Relationship Diagram
 In order to build the database using MySQL Workbench, I have designed its structure using the following entity-relationship (ER) diagram. This allows us to model the expected behavior between each entity: 
